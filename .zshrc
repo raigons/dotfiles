@@ -2,6 +2,7 @@
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 export DOTFILES="${HOME}/dotfiles"
 export SYSTEM="${DOTFILES}/system"
+export EDITOR='vim';
 
 #Path to your oh-my-zsh installation.
 export ZSH="${HOME}/.oh-my-zsh"
