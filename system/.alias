@@ -1,1 +1,1 @@
-[ -f java-aliases ] && source java-aliases
+[ -f $SYSTEM/.java-aliases ] && source $SYSTEM/.java-aliases

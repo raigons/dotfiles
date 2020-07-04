@@ -1,5 +1,7 @@
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:/usr/local/bin:$PATH
+export DOTFILES="${HOME}/dotfiles"
+export SYSTEM="${DOTFILES}/system"
 
 #Path to your oh-my-zsh installation.
 export ZSH="/Users/ramongoncalves/.oh-my-zsh"
@@ -135,3 +137,4 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+[ -f $SYSTEM/.alias ] && source $SYSTEM/.alias
