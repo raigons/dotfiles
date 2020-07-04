@@ -2,7 +2,7 @@ set nocompatible
 set number
 set relativenumber
 " Make tabs as wide as two spaces
- set tabstop=2
+set tabstop=2
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
