@@ -1,0 +1,8 @@
+[user]
+	name = Ramon Gonçalves
+	email = raigons@gmail.com
+[hub]
+	protocol = ssh
+
+[core]
+	editor = vim
