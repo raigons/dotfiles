@@ -36,9 +36,9 @@ SPACESHIP_PROMPT_ORDER=(
   git
   exec_time
 )
-# SPACESHIP_RPROMPT_ORDER=(
-#   node
-# )
+SPACESHIP_RPROMPT_ORDER=(
+  node
+)
 
 source $ZSH/plugins/fsh/fast-syntax-highlighting.plugin.zsh
 
@@ -107,8 +107,8 @@ source $ZSH/plugins/fsh/fast-syntax-highlighting.plugin.zsh
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-# plugins=(git zsh-nvm zsh-completions)
-# autoload -U compinit && compinit
+plugins=(git zsh-nvm zsh-completions)
+autoload -U compinit && compinit
 
 source $ZSH/oh-my-zsh.sh
 
