@@ -139,3 +139,5 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 [ -f $SYSTEM/.alias ] && source $SYSTEM/.alias
+
+. $(brew --prefix asdf)/asdf.sh

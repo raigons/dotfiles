@@ -39,6 +39,9 @@ filetype plugin indent on    " required
 filetype plugin on
 syntax on
 colorscheme dracula
+
+let NERDTreeShowHidden=1
+let NERDTreeIgnore=['\.DS_Store$', '\.git$'] "ignore files in nerd tree
 "
 " Brief help
 " :PluginList       - lists configured plugins
