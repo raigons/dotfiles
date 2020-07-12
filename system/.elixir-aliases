@@ -1,2 +1,6 @@
+#general
+alias e_cmd="iex -S mix"
+
+#migrations
 alias e_create_migration="mix ecto.gen.migration $1"
 alias e_migrate="mix ecto.migrate"
