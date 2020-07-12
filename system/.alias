@@ -1,2 +1,3 @@
 [ -f $SYSTEM/.java-aliases ] && source $SYSTEM/.java-aliases
 [ -f $SYSTEM/.docker-aliases ] && source $SYSTEM/.docker-aliases
+[ -f $SYSTEM/.elixir-aliases ] && source $SYSTEM/.elixir-aliases
