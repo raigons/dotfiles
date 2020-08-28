@@ -1,0 +1,1 @@
+alias connect_psql="psql postgres -U ramongoncalves"
