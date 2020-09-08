@@ -7,3 +7,6 @@ alias e_phx_s="mix phx.server"
 #migrations
 alias e_create_migration="mix ecto.gen.migration $1"
 alias e_migrate="mix ecto.migrate"
+
+#erlang/otp version
+alias erlang_version="erl -eval 'erlang:display(erlang:system_info(otp_release)), halt().'  -noshell"
