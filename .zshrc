@@ -143,3 +143,6 @@ source $ZSH/oh-my-zsh.sh
 . $(brew --prefix asdf)/asdf.sh
 # Add Visual Studio Code (code)
 export PATH="/Applications/Visual Studio Code.app/Contents/Resources/app/bin:/Users/ramongoncalves/.asdf/shims:/usr/local/opt/asdf/bin:/Users/ramongoncalves/bin:/usr/local/bin:/Users/ramongoncalves/bin:/usr/local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+
+export NVM_DIR=~/.nvm
+ [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
