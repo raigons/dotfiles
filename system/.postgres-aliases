@@ -1,3 +1,4 @@
 alias connect_psql="psql postgres -U ramongoncalves"
 alias pg_start="pg_ctl -D /usr/local/var/postgres start"
 alias pg_stop="pg_ctl -D /usr/local/var/postgres stop"
+alias pg_restart="pg_stop && pg_start"
