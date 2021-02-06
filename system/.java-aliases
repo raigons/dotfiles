@@ -1,8 +1,0 @@
-function java_aliases {
-  alias java13="export JAVA_HOME=`/usr/libexec/java_home -v 13`; java --version"
-  alias java8="export JAVA_HOME=`/usr/libexec/java_home -v 1.8.0_222`; java -version"
-  alias java_version="java -version"
-  alias available_java="/usr/libexec/java_home -V"
-}
-
-[ `alias | grep java13 | wc -l` = 0 ] && java_aliases
