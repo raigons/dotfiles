@@ -3,6 +3,7 @@ alias e_cmd="iex -S mix"
 
 #phoenix
 alias e_phx_s="mix phx.server"
+alias e_phx_debug ="iex -S mix phx.server"
 
 #migrations
 alias e_create_migration="mix ecto.gen.migration $1"
