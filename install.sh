@@ -1,6 +1,8 @@
 export DOTFILES="${HOME}/dotfiles"
 
-cp .zshrc.example .zshrc
+# cp .zshrc.example .zshrc
+
+cp ${DOTFILES}/.zshrc.example $DOTFILES/.zshrc
 
 ln -fsv ${DOTFILES}/.zshrc ~/.
 ln -fsv ${DOTFILES}/config/git/.gitconfig ~/.

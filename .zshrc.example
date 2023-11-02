@@ -147,3 +147,5 @@ export PATH="/Applications/Visual Studio Code.app/Contents/Resources/app/bin:/Us
 
 export NVM_DIR=~/.nvm
  [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+
+export PATH="/opt/homebrew/bin:/Applications/Visual Studio Code.app/Contents/Resources/app/bin:/Users/ramongoncalves/.asdf/shims:/usr/local/opt/asdf/bin:/Users/ramongoncalves/bin:/usr/local/bin:/Users/ramongoncalves/bin:/usr/local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"

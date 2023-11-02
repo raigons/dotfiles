@@ -1,8 +1,17 @@
-[user]
-	name = Ramon Gonçalves
-	email = raigons@gmail.com
+[includeIf "gitdir:/Users/ramongoncalves/Documents/erlang-solutions/elc/"]
+	path = "~/.gitconfig-work"
+
+[includeIf "gitdir:/Users/ramongoncalves/Documents/personal/"]
+	path = "~/.gitconfig-personal"
+
+[includeIf "gitdir:/Users/ramongoncalves/dotfiles/"]
+	path = "~/.gitconfig-personal"
+
 [hub]
 	protocol = ssh
 
 [core]
 	editor = vim
+
+[pager]
+	branch = false
