@@ -141,11 +141,15 @@ fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 [ -f $SYSTEM/.alias ] && source $SYSTEM/.alias
 
-. $(brew --prefix asdf)/asdf.sh
+export PATH="/opt/homebrew/bin/:$PATH"
+
+. $(brew --prefix asdf)/libexec/asdf.sh
 # Add Visual Studio Code (code)
-export PATH="/Applications/Visual Studio Code.app/Contents/Resources/app/bin:/Users/ramongoncalves/.asdf/shims:/usr/local/opt/asdf/bin:/Users/ramongoncalves/bin:/usr/local/bin:/Users/ramongoncalves/bin:/usr/local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+
+export PATH="/Applications/Visual Studio Code.app/Contents/Resources/app/bin:$PATH"
+
+# export PATH="/Applications/Visual Studio Code.app/Contents/Resources/app/bin:/Users/ramongoncalves/.asdf/shims:/usr/local/opt/asdf/bin:/Users/ramongoncalves/bin:/usr/local/bin:/Users/ramongoncalves/bin:/usr/local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 
 export NVM_DIR=~/.nvm
  [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
 
-export PATH="/opt/homebrew/bin:/Applications/Visual Studio Code.app/Contents/Resources/app/bin:/Users/ramongoncalves/.asdf/shims:/usr/local/opt/asdf/bin:/Users/ramongoncalves/bin:/usr/local/bin:/Users/ramongoncalves/bin:/usr/local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
