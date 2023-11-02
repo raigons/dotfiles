@@ -6,6 +6,7 @@ alias e_create_migration="mix ecto.gen.migration $1"
 alias e_migrate="mix ecto.migrate"
 alias e_recreate_db="mix ecto.drop && mix ecto.create"
 alias e_reconfigure_db="e_recreate_db && e_migrate"
+alias e_reconfigure_test_db="MIX_ENV=test mix ecto.drop && MIX_ENV=test mix ecto.create && MIX_ENV=test mix ecto.migrate"
 
 #erlang/otp version
 alias erlang_version="erl -eval 'erlang:display(erlang:system_info(otp_release)), halt().'  -noshell"
