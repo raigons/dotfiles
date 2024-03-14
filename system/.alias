@@ -1,3 +1,4 @@
 [ -f $SYSTEM/.docker-aliases ] && source $SYSTEM/.docker-aliases
 [ -f $SYSTEM/.elixir-aliases ] && source $SYSTEM/.elixir-aliases
 [ -f $SYSTEM/.postgres-aliases ] && source $SYSTEM/.postgres-aliases
+[ -f $SYSTEM/.general-aliases ] && source $SYSTEM/.general-aliases
