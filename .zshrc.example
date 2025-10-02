@@ -156,3 +156,7 @@ if [ -f '/Users/ramongoncalves/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/ramongoncalves/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/ramongoncalves/google-cloud-sdk/completion.zsh.inc'; fi
+
+# Deduplicate PATH to remove redundant entries
+typeset -U path
+path=($path)
