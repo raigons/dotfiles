@@ -7,6 +7,21 @@
 [includeIf "gitdir:/Users/ramongoncalves/dotfiles/"]
 	path = "~/.gitconfig-personal"
 
+[includeIf "gitdir:/Users/ramongoncalves/Documents/erlang-solutions/pepsico/"]
+	path = "~/.gitconfig-personal"
+
+[includeIf "gitdir:/Users/ramongoncalves/Documents/erlang-solutions/razoyo/"]
+	path = "~/.gitconfig-personal"
+
+[includeIf "gitdir:/Users/ramongoncalves/Documents/erlang-solutions/cortex/"]
+	path = "~/.gitconfig-personal"
+
+[includeIf "gitdir:/Users/ramongoncalves/Documents/erlang-solutions/cortex_agent/"]
+	path = "~/.gitconfig-personal"
+
+[includeIf "gitdir:/Users/ramongoncalves/Documents/assessments/"]
+	path = "~/.gitconfig-anonymous"
+
 [hub]
 	protocol = ssh
 

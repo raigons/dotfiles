@@ -1,2 +1,7 @@
-alias drmi="docker rmi $0"
-alias drmi_none="docker images | grep none | awk '{ print $3; }' | xargs docker rmi --force"
+# Remove docker image by ID or name
+drmi() {
+  docker rmi "$@"
+}
+
+# Remove all <none> tagged images
+alias drmi_none="docker images | grep none | awk '{ print \$3; }' | xargs docker rmi --force"

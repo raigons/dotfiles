@@ -26,7 +26,7 @@ Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 " different version somewhere else.
 " Plugin 'ascenator/L9', {'name': 'newL9'}
 
-Plugin 'scrooloose/nerdtree'
+Plugin 'preservim/nerdtree'
 Plugin 'othree/xml.vim'
 Plugin 'pangloss/vim-javascript'
 Plugin 'dracula/vim', { 'name': 'dracula' }
@@ -40,8 +40,9 @@ filetype plugin on
 syntax on
 colorscheme dracula
 
-let NERDTreeShowHidden=1
 let NERDTreeIgnore=['\.DS_Store$', '\.git$'] "ignore files in nerd tree
+nnoremap <C-n> :NERDTreeToggle<CR>
+autocmd VimEnter * NERDTree
 "
 " Brief help
 " :PluginList       - lists configured plugins

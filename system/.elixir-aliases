@@ -13,4 +13,4 @@ alias erlang_version="erl -eval 'erlang:display(erlang:system_info(otp_release))
 
 #phoenix
 alias e_phx_s="mix phx.server"
-alias e_phx_debug ="iex -S mix phx.server"
+alias e_phx_debug="iex -S mix phx.server"
