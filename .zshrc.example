@@ -1,8 +1,10 @@
-# If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:/usr/local/bin:$PATH
+# Environment variables
 export DOTFILES="${HOME}/dotfiles"
 export SYSTEM="${DOTFILES}/system"
-export EDITOR='vim';
+export EDITOR='vim'
+
+# PATH configuration - consolidated for performance
+export PATH="$HOME/bin:/usr/local/bin:/opt/homebrew/bin:${ASDF_DATA_DIR:-$HOME/.asdf}/shims:/Applications/Visual Studio Code.app/Contents/Resources/app/bin:$PATH"
 
 #Path to your oh-my-zsh installation.
 export ZSH="${HOME}/.oh-my-zsh"
@@ -41,7 +43,8 @@ SPACESHIP_RPROMPT_ORDER=(
   node
 )
 
-source $ZSH/plugins/fsh/fast-syntax-highlighting.plugin.zsh
+# Load fast-syntax-highlighting if available
+[ -f $ZSH/plugins/fsh/fast-syntax-highlighting.plugin.zsh ] && source $ZSH/plugins/fsh/fast-syntax-highlighting.plugin.zsh
 
 ###
 ###
@@ -141,17 +144,12 @@ fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 [ -f $SYSTEM/.alias ] && source $SYSTEM/.alias
 
-export PATH="/opt/homebrew/bin/:$PATH"
-export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
-. ${ASDF_DATA_DIR:-$HOME/.asdf}/plugins/golang/set-env.zsh
+# Load asdf golang plugin
+[ -f "${ASDF_DATA_DIR:-$HOME/.asdf}/plugins/golang/set-env.zsh" ] && . ${ASDF_DATA_DIR:-$HOME/.asdf}/plugins/golang/set-env.zsh
 
-# Add Visual Studio Code (code)
-export PATH="/Applications/Visual Studio Code.app/Contents/Resources/app/bin:$PATH"
-
-# export PATH="/Applications/Visual Studio Code.app/Contents/Resources/app/bin:/Users/ramongoncalves/.asdf/shims:/usr/local/opt/asdf/bin:/Users/ramongoncalves/bin:/usr/local/bin:/Users/ramongoncalves/bin:/usr/local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
-
+# Load NVM
 export NVM_DIR=~/.nvm
- [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/ramongoncalves/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/ramongoncalves/google-cloud-sdk/path.zsh.inc'; fi
