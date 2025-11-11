@@ -42,7 +42,7 @@ colorscheme dracula
 
 let NERDTreeIgnore=['\.DS_Store$', '\.git$'] "ignore files in nerd tree
 nnoremap <C-n> :NERDTreeToggle<CR>
-autocmd VimEnter * NERDTree
+" autocmd VimEnter * NERDTree
 "
 " Brief help
 " :PluginList       - lists configured plugins
