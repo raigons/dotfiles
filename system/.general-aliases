@@ -1,1 +1,4 @@
 alias privateff="open -a Firefox --args -private-window"
+
+# Git profile management
+alias git-add-work="${DOTFILES}/scripts/git-add-work-profile.sh"

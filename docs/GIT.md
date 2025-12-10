@@ -42,7 +42,35 @@ The main `.gitconfig` uses Git's `includeIf` directive to conditionally load dif
 
 ## Adding a New Work Configuration
 
-When you start working for a new company, follow these steps:
+### Quick Method: Use the Automated Script
+
+The easiest way to add a new work profile is to use the included script:
+
+```bash
+# Run the interactive script
+git-add-work
+
+# Or with company name as argument
+git-add-work acme
+```
+
+The script will:
+1. ✅ Generate SSH key for the new company
+2. ✅ Add SSH key to ssh-agent
+3. ✅ Copy public key to clipboard
+4. ✅ Create git config profile
+5. ✅ Update main .gitconfig with conditional include
+6. ✅ Create symlink
+7. ✅ Update install.sh
+8. ✅ Create work directory
+9. ✅ Test configuration
+10. ✅ Test SSH connection (optional)
+
+The script is interactive and will guide you through each step!
+
+### Manual Method
+
+If you prefer to do it manually, follow these steps:
 
 ### 1. Generate SSH Key
 

@@ -43,6 +43,8 @@ dotfiles/
 │       ├── .gitconfig-work         # Work profile (Estée Lauder)
 │       ├── .gitconfig-personal     # Personal profile
 │       └── .gitconfig-anonymous    # Anonymous profile (assessments)
+├── scripts/
+│   └── git-add-work-profile.sh     # Automated script to add new work profiles
 └── system/
     ├── .alias                  # Alias loader
     ├── .docker-aliases         # Docker shortcuts
@@ -92,6 +94,7 @@ dotfiles/
 - **Multi-Profile Support**: Automatically switches git identity based on project directory
 - **Profiles**: Work, Personal, and Anonymous configurations
 - **SSH Key Management**: Separate SSH keys for different contexts
+- **Quick Setup**: Use `git-add-work` command to easily add new work profiles
 - See [Git Configuration Guide](docs/GIT.md) for detailed setup and adding new profiles
 
 ## Customization
