@@ -1,0 +1,10 @@
+[user]
+  name = Ramon Gonçalves
+  email = rgoncalv@estee.com
+
+[core]
+  sshCommand = "ssh -i ~/.ssh/id_rsa-elc"
+
+#this is the value in Hosts on ~/.ssh/config config file
+[url "git@github.com-estee:elc-online"]
+  insteadOf = https://github.com/elc-online

@@ -1,0 +1,5 @@
+[user]
+  name = Ramon Gonçalves
+  email = raigons@gmail.com
+[core]
+  sshCommand = "ssh -i ~/.ssh/id_rsa-personal"

@@ -9,7 +9,7 @@ A clean and modular dotfiles configuration for macOS development, optimized for 
 - **Tmux Configuration** - Vim-style navigation and custom key bindings
 - **Modular Aliases** - Organized by domain (Docker, Elixir, PostgreSQL, General)
 - **PATH Deduplication** - Automatic cleanup of redundant PATH entries
-- **Git Configuration** - Ready-to-use Git settings
+- **Multi-Profile Git Configuration** - Automatic git identity switching based on project directory (work, personal, anonymous)
 
 ## Quick Start
 
@@ -39,7 +39,10 @@ dotfiles/
 ├── install.sh          # Installation script
 ├── config/
 │   └── git/
-│       └── .gitconfig  # Git configuration
+│       ├── .gitconfig              # Main git config with conditional includes
+│       ├── .gitconfig-work         # Work profile (Estée Lauder)
+│       ├── .gitconfig-personal     # Personal profile
+│       └── .gitconfig-anonymous    # Anonymous profile (assessments)
 └── system/
     ├── .alias                  # Alias loader
     ├── .docker-aliases         # Docker shortcuts
@@ -59,6 +62,7 @@ dotfiles/
 
 ## Documentation
 
+- [Git Configuration](docs/GIT.md) - Multi-profile git setup and how to add new work configurations
 - [Aliases Reference](docs/ALIASES.md) - Complete guide to all available aliases
 - [Vim Configuration](docs/VIM.md) - Vim setup and plugin details
 - [Tmux Configuration](docs/TMUX.md) - Tmux key bindings and customizations
@@ -82,6 +86,13 @@ dotfiles/
 - **Prefix**: Default (`Ctrl+b`)
 - **Color Support**: 256-color terminal
 - **Navigation**: Vim-style (`hjkl`) and Alt-arrow keys
+
+### Git
+
+- **Multi-Profile Support**: Automatically switches git identity based on project directory
+- **Profiles**: Work, Personal, and Anonymous configurations
+- **SSH Key Management**: Separate SSH keys for different contexts
+- See [Git Configuration Guide](docs/GIT.md) for detailed setup and adding new profiles
 
 ## Customization
 
