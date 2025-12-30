@@ -17,16 +17,28 @@ A clean and modular dotfiles configuration for macOS development, optimized for 
 # Clone the repository
 git clone https://github.com/yourusername/dotfiles.git ~/dotfiles
 
+# Install Oh My Zsh (if not already installed)
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
 # Run the installation script
 cd ~/dotfiles
-chmod +x install.sh
+chmod +x install.sh setup-dependencies.sh
 ./install.sh
+
+# Install zsh plugins and themes
+./setup-dependencies.sh
+
+# Restart your terminal or reload configuration
+source ~/.zshrc
 ```
 
-The installation script will:
+The installation will:
 - Backup your existing dotfiles to `~/.dotfiles_backup_TIMESTAMP`
 - Create `.zshrc` from the example template
 - Symlink all configuration files to your home directory
+- Install required zsh plugins (zsh-nvm, zsh-completions)
+- Install Spaceship prompt theme
+- Install fast-syntax-highlighting
 
 ## Structure
 
