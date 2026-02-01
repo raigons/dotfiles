@@ -1,3 +1,7 @@
+[user]
+	name = Ramon Gonçalves
+	email = raigons@gmail.com
+
 [includeIf "gitdir:/Users/ramongoncalves/Documents/erlang-solutions/elc/"]
 	path = "~/.gitconfig-work"
 
@@ -27,6 +31,12 @@
 
 [core]
 	editor = vim
+
+[init]
+	defaultBranch = main
+
+[pull]
+	rebase = true
 
 [pager]
 	branch = false
