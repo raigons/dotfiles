@@ -5,7 +5,7 @@ A clean and modular dotfiles configuration for macOS development, optimized for 
 ## Features
 
 - **Zsh Configuration** - Spaceship prompt theme with custom configurations
-- **Vim Setup** - Vundle-based plugin management with NERDTree and syntax highlighting
+- **Vim Setup** - vim-plug based plugin management with NERDTree and syntax highlighting
 - **Tmux Configuration** - Vim-style navigation and custom key bindings
 - **Modular Aliases** - Organized by domain (Docker, Elixir, PostgreSQL, General)
 - **PATH Deduplication** - Automatic cleanup of redundant PATH entries
@@ -33,9 +33,10 @@ source ~/.zshrc
 ```
 
 The installation will:
-- Backup your existing dotfiles to `~/.dotfiles_backup_TIMESTAMP`
+- Backup your existing dotfiles to `~/.dotfiles_backup_TIMESTAMP` (skipped if symlinks already set up)
 - Create `.zshrc` from the example template
 - Symlink all configuration files to your home directory
+- Install Vim plugins automatically via vim-plug
 - Install required zsh plugins (zsh-nvm, zsh-completions)
 - Install Spaceship prompt theme
 - Install fast-syntax-highlighting
@@ -44,19 +45,26 @@ The installation will:
 
 ```
 dotfiles/
-├── .zshrc              # Main Zsh configuration
+├── .zshrc              # Main Zsh configuration (gitignored, machine-specific)
 ├── .zshrc.example      # Template for fresh installations
 ├── .vimrc              # Vim configuration
 ├── .tmux.conf          # Tmux configuration
+├── Brewfile            # Homebrew packages, casks, and VS Code extensions
 ├── install.sh          # Installation script
+├── setup-dependencies.sh # Zsh plugin and theme installer
 ├── config/
 │   └── git/
 │       ├── .gitconfig              # Main git config with conditional includes
-│       ├── .gitconfig-work         # Work profile (Estée Lauder)
+│       ├── .gitconfig-work         # Work profile
 │       ├── .gitconfig-personal     # Personal profile
 │       └── .gitconfig-anonymous    # Anonymous profile (assessments)
 ├── scripts/
 │   └── git-add-work-profile.sh     # Automated script to add new work profiles
+├── docs/
+│   ├── GIT.md          # Git multi-profile setup guide
+│   ├── ALIASES.md      # Complete alias reference
+│   ├── VIM.md          # Vim configuration guide
+│   └── TMUX.md         # Tmux configuration guide
 └── system/
     ├── .alias                  # Alias loader
     ├── .docker-aliases         # Docker shortcuts
@@ -91,15 +99,16 @@ dotfiles/
 
 ### Vim
 
-- **Plugin Manager**: Vundle
+- **Plugin Manager**: vim-plug (auto-installs on first run)
 - **Theme**: Dracula
 - **Key Plugins**: NERDTree, vim-fugitive, vim-javascript
 
 ### Tmux
 
 - **Prefix**: Default (`Ctrl+b`)
-- **Color Support**: 256-color terminal
+- **Color Support**: tmux-256color with mouse support
 - **Navigation**: Vim-style (`hjkl`) and Alt-arrow keys
+- **Splits**: Preserve current working directory
 
 ### Git
 
@@ -120,10 +129,14 @@ To customize your setup:
 
 ## Recent Updates
 
-- Added PATH deduplication to remove redundant entries
-- Synchronized `.zshrc.example` with latest improvements
-- Refactored dotfiles configuration and fixed critical bugs
-- Enhanced alias organization
+- Added `Brewfile` for reproducible machine setup via Homebrew
+- Migrated Vim plugin manager from Vundle to vim-plug
+- Improved tmux config: mouse support, zero escape-time, path-preserving splits
+- Cleaned up `.zshrc`: removed boilerplate, fixed `fpath`/`compinit` ordering, portable paths
+- Added default git identity, `pull.rebase=true`, and `init.defaultBranch=main`
+- Made `install.sh` idempotent with error handling and auto Vim plugin install
+- Modernized Docker aliases to use built-in `docker image prune`
+- Added shell history configuration (10,000 entries)
 
 ## Contributing
 
