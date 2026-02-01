@@ -1,7 +1,2 @@
-# Remove docker image by ID or name
-drmi() {
-  docker rmi "$@"
-}
-
-# Remove all <none> tagged images
-alias drmi_none="docker images | grep none | awk '{ print \$3; }' | xargs docker rmi --force"
+# Remove all dangling (untagged) images
+alias drmi_none="docker image prune -f"
