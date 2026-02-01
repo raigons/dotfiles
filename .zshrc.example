@@ -9,7 +9,7 @@ HISTSIZE=10000
 SAVEHIST=10000
 
 # PATH configuration - consolidated for performance
-export PATH="$HOME/bin:/usr/local/bin:/opt/homebrew/bin:${ASDF_DATA_DIR:-$HOME/.asdf}/shims:/Applications/Visual Studio Code.app/Contents/Resources/app/bin:$PATH"
+export PATH="$HOME/bin:/usr/local/bin:/opt/homebrew/bin:/opt/homebrew/sbin:${ASDF_DATA_DIR:-$HOME/.asdf}/shims:/Applications/Visual Studio Code.app/Contents/Resources/app/bin:$PATH"
 
 # Oh My Zsh
 export ZSH="${HOME}/.oh-my-zsh"
