@@ -3,6 +3,11 @@ export DOTFILES="${HOME}/dotfiles"
 export SYSTEM="${DOTFILES}/system"
 export EDITOR='vim'
 
+# History
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+
 # PATH configuration - consolidated for performance
 export PATH="$HOME/bin:/usr/local/bin:/opt/homebrew/bin:${ASDF_DATA_DIR:-$HOME/.asdf}/shims:/Applications/Visual Studio Code.app/Contents/Resources/app/bin:$PATH"
 
