@@ -1,9 +1,14 @@
 #!/bin/bash
+set -e
+
 export DOTFILES="${HOME}/dotfiles"
 BACKUP_DIR="${HOME}/.dotfiles_backup_$(date +%Y%m%d_%H%M%S)"
 
+# Skip backup if symlinks already point to our dotfiles
+if [ -L ~/.zshrc ] && [ "$(readlink ~/.zshrc)" = "${DOTFILES}/.zshrc" ]; then
+  echo "Symlinks already set up, skipping backup."
 # Create backup directory if any existing dotfiles found
-if [ -f ~/.zshrc ] || [ -f ~/.gitconfig ] || [ -f ~/.gitconfig-work ] || [ -f ~/.gitconfig-personal ] || [ -f ~/.gitconfig-anonymous ] || [ -f ~/.vimrc ] || [ -f ~/.tmux.conf ]; then
+elif [ -f ~/.zshrc ] || [ -f ~/.gitconfig ] || [ -f ~/.gitconfig-work ] || [ -f ~/.gitconfig-personal ] || [ -f ~/.gitconfig-anonymous ] || [ -f ~/.vimrc ] || [ -f ~/.tmux.conf ]; then
   echo "📦 Backing up existing dotfiles to ${BACKUP_DIR}"
   mkdir -p "${BACKUP_DIR}"
 
@@ -19,19 +24,23 @@ if [ -f ~/.zshrc ] || [ -f ~/.gitconfig ] || [ -f ~/.gitconfig-work ] || [ -f ~/
 fi
 
 # Create .zshrc from example if it doesn't exist
-if [ ! -f ${DOTFILES}/.zshrc ]; then
+if [ ! -f "${DOTFILES}/.zshrc" ]; then
   echo "📝 Creating .zshrc from example..."
-  cp ${DOTFILES}/.zshrc.example ${DOTFILES}/.zshrc
+  cp "${DOTFILES}/.zshrc.example" "${DOTFILES}/.zshrc"
 fi
 
 # Symlink dotfiles
 echo "🔗 Creating symlinks..."
-ln -fsv ${DOTFILES}/.zshrc ~/.
-ln -fsv ${DOTFILES}/config/git/.gitconfig ~/.
-ln -fsv ${DOTFILES}/config/git/.gitconfig-work ~/.
-ln -fsv ${DOTFILES}/config/git/.gitconfig-personal ~/.
-ln -fsv ${DOTFILES}/config/git/.gitconfig-anonymous ~/.
-ln -fsv ${DOTFILES}/.vimrc ~/.
-ln -fsv ${DOTFILES}/.tmux.conf ~/.
+ln -fsv "${DOTFILES}/.zshrc" ~/.
+ln -fsv "${DOTFILES}/config/git/.gitconfig" ~/.
+ln -fsv "${DOTFILES}/config/git/.gitconfig-work" ~/.
+ln -fsv "${DOTFILES}/config/git/.gitconfig-personal" ~/.
+ln -fsv "${DOTFILES}/config/git/.gitconfig-anonymous" ~/.
+ln -fsv "${DOTFILES}/.vimrc" ~/.
+ln -fsv "${DOTFILES}/.tmux.conf" ~/.
+
+# Install Vim plugins
+echo "🔌 Installing Vim plugins..."
+vim -es -u "${DOTFILES}/.vimrc" -i NONE -c "PlugInstall --sync" -c "qa" 2>/dev/null || true
 
 echo "✨ Installation complete!"
