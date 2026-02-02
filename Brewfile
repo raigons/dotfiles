@@ -5,6 +5,8 @@ brew "fzf"
 brew "gh"
 brew "gnupg"
 brew "htop"
+brew "openssl@3"
+brew "php"
 brew "postgresql@14"
 brew "postgresql@15", link: true
 brew "terminal-notifier"
