@@ -242,16 +242,17 @@ tmux kill-session -t myproject # Kill session
 | `Prefix` + `}` | Swap pane with next |
 | `Prefix` + `Space` | Cycle through pane layouts |
 
-### Copy Mode
+### Copy Mode (Vi-style)
 
 | Key | Action |
 |-----|--------|
 | `Prefix` + `[` | Enter copy mode |
-| `Space` | Start selection |
-| `Enter` | Copy selection |
-| `Prefix` + `]` | Paste |
+| `v` | Start selection |
+| `y` | Copy selection to system clipboard (exits copy mode) |
+| `Prefix` + `]` | Paste from tmux buffer |
+| `Cmd+v` | Paste from system clipboard (anywhere) |
 
-**Tip:** Use Vim motions in copy mode (`h`, `j`, `k`, `l`, `w`, `b`, etc.)
+**Tip:** Use Vim motions in copy mode (`h`, `j`, `k`, `l`, `w`, `b`, `0`, `$`, `/`, etc.)
 
 ## Troubleshooting
 
