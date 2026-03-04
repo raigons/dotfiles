@@ -2,3 +2,7 @@ alias privateff="open -a Firefox --args -private-window"
 
 # Git profile management
 alias git-add-work="${DOTFILES}/scripts/git-add-work-profile.sh"
+
+# Git bare repo + worktree workflow (also available as: git bare-clone, git bare-init)
+alias git-bare-clone="${DOTFILES}/scripts/git-bare-clone"
+alias git-bare-init="${DOTFILES}/scripts/git-bare-init"

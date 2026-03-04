@@ -39,6 +39,12 @@ ln -fsv "${DOTFILES}/config/git/.gitconfig-anonymous" ~/.
 ln -fsv "${DOTFILES}/.vimrc" ~/.
 ln -fsv "${DOTFILES}/.tmux.conf" ~/.
 
+# Git custom subcommands
+echo "🔧 Setting up git subcommands..."
+mkdir -p ~/bin
+ln -fsv "${DOTFILES}/scripts/git-bare-clone" ~/bin/git-bare-clone
+ln -fsv "${DOTFILES}/scripts/git-bare-init" ~/bin/git-bare-init
+
 # Install Vim plugins
 echo "🔌 Installing Vim plugins..."
 vim -es -u "${DOTFILES}/.vimrc" -i NONE -c "PlugInstall --sync" -c "qa" 2>/dev/null || true

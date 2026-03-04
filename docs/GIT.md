@@ -201,6 +201,66 @@ You should see a success message like:
 Hi username! You've successfully authenticated, but GitHub does not provide shell access.
 ```
 
+## Bare Clone & Init with Worktrees
+
+Two custom git subcommands automate the bare repo + worktree pattern, which is ideal for working on multiple branches simultaneously without stashing or switching.
+
+### `git bare-clone` — Clone a Remote Repository
+
+```bash
+# Clone with auto-detected directory name
+git bare-clone git@github.com:user/repo.git
+
+# Clone into a specific directory
+git bare-clone git@github.com:user/repo.git my-project
+```
+
+### `git bare-init` — Initialize a Local Directory
+
+```bash
+# In an empty directory
+mkdir my-project && cd my-project
+git bare-init
+
+# In a directory with existing files (moves them into main/)
+cd existing-project
+git bare-init
+```
+
+### What They Create
+
+```
+project/
+├── .bare/       ← bare git database (shared by all worktrees)
+├── .git         ← pointer file (gitdir: ./.bare)
+└── main/        ← worktree on default branch
+```
+
+### Working with Worktrees
+
+```bash
+cd project
+
+# Add a new worktree for a feature branch
+git worktree add feature-x -b feature-x
+
+# Add a worktree for an existing remote branch
+git worktree add fix-bug origin/fix-bug
+
+# List all worktrees
+git worktree list
+
+# Remove a worktree when done
+git worktree remove feature-x
+```
+
+### Why Bare + Worktrees?
+
+- **No stashing needed** — each branch lives in its own directory
+- **Parallel work** — run tests on one branch while coding on another
+- **Clean separation** — no risk of uncommitted changes leaking between branches
+- **Shared object store** — all worktrees share the same `.bare` database, saving disk space
+
 ## Quick Reference
 
 ### Check Current Git Identity

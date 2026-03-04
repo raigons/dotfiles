@@ -1,0 +1,120 @@
+#!/bin/bash
+
+# Initialize a directory with bare repo + worktree pattern
+# Usage: git bare-init (run from inside the target directory)
+#
+# Detects two cases automatically:
+# - Empty directory: creates bare repo with initial commit and main worktree
+# - Directory with files: creates bare repo, moves files into main worktree, commits
+
+set -e
+
+GREEN='\033[0;32m'
+BLUE='\033[0;34m'
+YELLOW='\033[1;33m'
+RED='\033[0;31m'
+NC='\033[0m' # No Color
+
+# Must not already be a git repo
+if [ -d ".git" ] || [ -f ".git" ] || [ -d ".bare" ]; then
+  echo -e "${RED}Error: Current directory is already a git repository${NC}"
+  exit 1
+fi
+
+# Check if directory has existing files (ignore hidden files like .DS_Store)
+HAS_FILES=false
+if [ -n "$(ls -A 2>/dev/null | grep -v '^\.')" ]; then
+  HAS_FILES=true
+fi
+
+DIR_NAME=$(basename "$PWD")
+
+echo -e "${BLUE}Git Bare Init${NC}\n"
+
+if [ "$HAS_FILES" = true ]; then
+  echo -e "${YELLOW}Detected existing files — will move them into main/ worktree${NC}\n"
+fi
+
+# Step 1: Initialize bare repo
+echo -e "${BLUE}1. Initializing bare repository ...${NC}"
+git init --bare .bare
+echo -e "${GREEN}✓ Done${NC}"
+
+# Step 2: Create .git pointer file
+echo -e "\n${BLUE}2. Creating .git pointer file ...${NC}"
+echo "gitdir: ./.bare" > .git
+echo -e "${GREEN}✓ Done${NC}"
+
+# Step 3: Create initial commit
+echo -e "\n${BLUE}3. Creating initial commit ...${NC}"
+
+# Create a temporary directory to seed the initial commit
+TEMP_DIR=$(mktemp -d)
+cd "$TEMP_DIR"
+git init
+git checkout -b main
+
+if [ "$HAS_FILES" = false ]; then
+  touch .gitkeep
+  git add .gitkeep
+else
+  touch .gitkeep
+  git add .gitkeep
+fi
+
+git commit -m "Initial commit"
+git remote add origin "$OLDPWD/.bare"
+git push origin main
+cd "$OLDPWD"
+rm -rf "$TEMP_DIR"
+echo -e "${GREEN}✓ Done${NC}"
+
+# Step 4: Create main worktree
+echo -e "\n${BLUE}4. Creating main worktree ...${NC}"
+git worktree add main
+echo -e "${GREEN}✓ Done${NC}"
+
+# Step 5: Move existing files into main (if any)
+if [ "$HAS_FILES" = true ]; then
+  echo -e "\n${BLUE}5. Moving existing files into main/ ...${NC}"
+
+  # Move everything except .bare, .git, and main into main/
+  for item in *; do
+    [ "$item" = "main" ] && continue
+    mv "$item" "main/"
+  done
+
+  # Also move hidden files (except .bare, .git, .DS_Store)
+  for item in .[^.]*; do
+    [ "$item" = ".bare" ] && continue
+    [ "$item" = ".git" ] && continue
+    [ "$item" = ".DS_Store" ] && continue
+    [ -e "$item" ] && mv "$item" "main/"
+  done
+
+  echo -e "${GREEN}✓ Done${NC}"
+
+  # Step 6: Stage and commit moved files
+  echo -e "\n${BLUE}6. Committing moved files ...${NC}"
+  cd main
+  git add -A
+  git commit -m "Add existing project files"
+  cd ..
+  echo -e "${GREEN}✓ Done${NC}"
+fi
+
+# Summary
+echo -e "\n${GREEN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+echo -e "${GREEN}✅ Bare init complete!${NC}"
+echo -e "${GREEN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+echo ""
+echo -e "  ${DIR_NAME}/"
+echo -e "  ├── .bare/          bare git database"
+echo -e "  ├── .git            pointer file"
+echo -e "  └── main/           worktree on main branch"
+echo ""
+echo -e "${YELLOW}Add more worktrees:${NC}"
+echo "  git worktree add <branch-name>"
+echo ""
+echo -e "${YELLOW}List worktrees:${NC}"
+echo "  git worktree list"

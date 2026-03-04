@@ -10,6 +10,7 @@ A clean and modular dotfiles configuration for macOS development, optimized for 
 - **Modular Aliases** - Organized by domain (Docker, Elixir, PostgreSQL, General)
 - **PATH Deduplication** - Automatic cleanup of redundant PATH entries
 - **Multi-Profile Git Configuration** - Automatic git identity switching based on project directory (work, personal, anonymous)
+- **Git Bare Clone & Init** - Custom `git bare-clone` and `git bare-init` subcommands for worktree-based workflows
 
 ## Quick Start
 
@@ -59,7 +60,9 @@ dotfiles/
 │       ├── .gitconfig-personal     # Personal profile
 │       └── .gitconfig-anonymous    # Anonymous profile (assessments)
 ├── scripts/
-│   └── git-add-work-profile.sh     # Automated script to add new work profiles
+│   ├── git-add-work-profile.sh     # Automated script to add new work profiles
+│   ├── git-bare-clone              # Bare clone + worktree setup (git subcommand)
+│   └── git-bare-init               # Bare init + worktree setup (git subcommand)
 ├── docs/
 │   ├── GIT.md          # Git multi-profile setup guide
 │   ├── ALIASES.md      # Complete alias reference
@@ -116,6 +119,8 @@ dotfiles/
 - **Profiles**: Work, Personal, and Anonymous configurations
 - **SSH Key Management**: Separate SSH keys for different contexts
 - **Quick Setup**: Use `git-add-work` command to easily add new work profiles
+- **Bare Clone**: Use `git bare-clone <url>` to set up repos with worktree-based workflow
+- **Bare Init**: Use `git bare-init` to initialize local directories with worktree layout
 - See [Git Configuration Guide](docs/GIT.md) for detailed setup and adding new profiles
 
 ## Customization

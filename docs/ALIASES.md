@@ -244,6 +244,33 @@ Equivalent to: `open -a Firefox --args -private-window`
 
 Opens a new Firefox window in private/incognito mode.
 
+### `git bare-clone`
+
+Clone a repository using the bare repo + worktree pattern.
+
+```bash
+git bare-clone <url> [directory]
+```
+
+**Examples:**
+```bash
+git bare-clone git@github.com:user/repo.git
+git bare-clone git@github.com:user/repo.git my-project
+```
+
+Creates a directory with a bare git database and a worktree for the default branch. See [Git Configuration Guide](GIT.md#bare-clone--init-with-worktrees) for details.
+
+### `git bare-init`
+
+Initialize the current directory with the bare repo + worktree pattern.
+
+```bash
+cd my-project
+git bare-init
+```
+
+Detects existing files automatically — if the directory has files, they are moved into a `main/` worktree and committed. See [Git Configuration Guide](GIT.md#bare-clone--init-with-worktrees) for details.
+
 ---
 
 ## Adding Custom Aliases

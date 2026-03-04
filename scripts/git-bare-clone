@@ -1,0 +1,99 @@
+#!/bin/bash
+
+# Clone a git repository using bare repo + worktree pattern
+# Usage: git bare-clone <url> [directory]
+#
+# Creates a directory structure with a bare git database and a worktree
+# for the default branch, ready for worktree-based workflows.
+
+set -e
+
+GREEN='\033[0;32m'
+BLUE='\033[0;34m'
+YELLOW='\033[1;33m'
+RED='\033[0;31m'
+NC='\033[0m' # No Color
+
+URL="$1"
+
+if [ -z "$URL" ]; then
+  echo -e "${RED}Error: Repository URL is required${NC}"
+  echo ""
+  echo "Usage: git bare-clone <url> [directory]"
+  echo ""
+  echo "Examples:"
+  echo "  git bare-clone git@github.com:user/repo.git"
+  echo "  git bare-clone git@github.com:user/repo.git my-project"
+  exit 1
+fi
+
+# Strip trailing slash from URL
+URL="${URL%/}"
+
+# Determine directory name
+if [ -n "$2" ]; then
+  DIR_NAME="$2"
+else
+  DIR_NAME=$(basename "$URL" .git)
+fi
+
+if [ -d "$DIR_NAME" ]; then
+  echo -e "${RED}Error: Directory '${DIR_NAME}' already exists${NC}"
+  exit 1
+fi
+
+echo -e "${BLUE}Git Bare Clone${NC}\n"
+
+# Step 1: Bare clone
+echo -e "${BLUE}1. Cloning bare repository into ${DIR_NAME}/.bare ...${NC}"
+git clone --bare "$URL" "${DIR_NAME}/.bare"
+echo -e "${GREEN}✓ Done${NC}"
+
+# Step 2: Create .git pointer file
+echo -e "\n${BLUE}2. Creating .git pointer file ...${NC}"
+echo "gitdir: ./.bare" > "${DIR_NAME}/.git"
+echo -e "${GREEN}✓ Done${NC}"
+
+# Step 3: Configure remote fetch refs
+# Bare clones don't set this by default, which breaks git fetch for new branches
+echo -e "\n${BLUE}3. Configuring remote fetch refs ...${NC}"
+git -C "${DIR_NAME}" config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
+echo -e "${GREEN}✓ Done${NC}"
+
+# Step 4: Fetch all branches
+echo -e "\n${BLUE}4. Fetching all remote branches ...${NC}"
+git -C "${DIR_NAME}" fetch origin
+echo -e "${GREEN}✓ Done${NC}"
+
+# Step 5: Detect default branch and create worktree
+echo -e "\n${BLUE}5. Creating worktree for default branch ...${NC}"
+
+DEFAULT_BRANCH=$(git -C "${DIR_NAME}" symbolic-ref refs/remotes/origin/HEAD 2>/dev/null | sed 's|refs/remotes/origin/||' || echo "")
+
+if [ -z "$DEFAULT_BRANCH" ]; then
+  DEFAULT_BRANCH=$(git -C "${DIR_NAME}" remote show origin 2>/dev/null | sed -n 's/  HEAD branch: //p' || echo "main")
+fi
+
+if [ -z "$DEFAULT_BRANCH" ]; then
+  DEFAULT_BRANCH="main"
+fi
+
+git -C "${DIR_NAME}" worktree add "${DEFAULT_BRANCH}" "${DEFAULT_BRANCH}"
+echo -e "${GREEN}✓ Done${NC}"
+
+# Summary
+echo -e "\n${GREEN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+echo -e "${GREEN}✅ Bare clone complete!${NC}"
+echo -e "${GREEN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+echo ""
+echo -e "  ${DIR_NAME}/"
+echo -e "  ├── .bare/          bare git database"
+echo -e "  ├── .git            pointer file"
+echo -e "  └── ${DEFAULT_BRANCH}/            worktree on ${DEFAULT_BRANCH} branch"
+echo ""
+echo -e "${YELLOW}Add more worktrees:${NC}"
+echo "  cd ${DIR_NAME}"
+echo "  git worktree add <branch-name>"
+echo ""
+echo -e "${YELLOW}List worktrees:${NC}"
+echo "  git worktree list"
