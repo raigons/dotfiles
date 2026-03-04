@@ -45,6 +45,17 @@ mkdir -p ~/bin
 ln -fsv "${DOTFILES}/scripts/git-bare-clone" ~/bin/git-bare-clone
 ln -fsv "${DOTFILES}/scripts/git-bare-init" ~/bin/git-bare-init
 
+# Claude Code
+echo "🤖 Setting up Claude Code..."
+mkdir -p ~/.claude
+ln -fsv "${DOTFILES}/config/claude/CLAUDE.md" ~/.claude/CLAUDE.md
+if ! command -v claude &> /dev/null; then
+  echo "  Installing Claude Code CLI..."
+  curl -fsSL https://cli.anthropic.com/install.sh | sh
+else
+  echo "  Claude Code CLI already installed ($(claude --version 2>/dev/null))"
+fi
+
 # Install Vim plugins
 echo "🔌 Installing Vim plugins..."
 vim -es -u "${DOTFILES}/.vimrc" -i NONE -c "PlugInstall --sync" -c "qa" 2>/dev/null || true

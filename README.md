@@ -11,6 +11,7 @@ A clean and modular dotfiles configuration for macOS development, optimized for 
 - **PATH Deduplication** - Automatic cleanup of redundant PATH entries
 - **Multi-Profile Git Configuration** - Automatic git identity switching based on project directory (work, personal, anonymous)
 - **Git Bare Clone & Init** - Custom `git bare-clone` and `git bare-init` subcommands for worktree-based workflows
+- **Claude Code** - Auto-installs CLI and symlinks global `CLAUDE.md` instructions
 
 ## Quick Start
 
