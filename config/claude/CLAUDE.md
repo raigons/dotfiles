@@ -41,6 +41,24 @@ Run this sequence before committing on all Elixir projects:
 - Web/API exposure comes after domain is solid
 - User works iteratively: scaffold → discuss → refine
 
+## Git Worktrees
+
+User uses the **bare repo + sibling worktree** pattern for all projects:
+
+```
+project/
+├── .bare/        # bare repo
+├── main/         # worktree → main branch
+├── feature-x/    # worktree → feature branch
+└── hotfix/       # worktree → another branch
+```
+
+**Rules for Claude Code:**
+- **Do NOT use the `EnterWorktree` tool.** It creates worktrees inside `.claude/worktrees/`, which breaks the sibling convention and can leave the session stuck on a deleted path.
+- To create a new worktree, use Bash: `cd <project-root> && git worktree add <name> -b <branch-name>` (creates `project/<name>/` as sibling to `main/`).
+- To work in a different worktree, the user will start a new session from that directory.
+- Worktrees are peers — same level, same visibility. Never nest them inside hidden directories.
+
 ## New Elixir Project from Scratch — Playbook
 
 When user says "start a new elixir project from scratch" or similar, follow this sequence.
