@@ -55,6 +55,8 @@ dotfiles/
 ├── install.sh          # Installation script
 ├── setup-dependencies.sh # Zsh plugin and theme installer
 ├── config/
+│   ├── claude/
+│   │   └── CLAUDE.md              # Global Claude Code instructions (symlinked to ~/.claude/)
 │   └── git/
 │       ├── .gitconfig              # Main git config with conditional includes
 │       ├── .gitconfig-work         # Work profile
@@ -89,6 +91,7 @@ dotfiles/
 ## Documentation
 
 - [Git Configuration](docs/GIT.md) - Multi-profile git setup and how to add new work configurations
+- [Claude Code](docs/CLAUDE.md) - Global AI assistant instructions and worktree convention
 - [Aliases Reference](docs/ALIASES.md) - Complete guide to all available aliases
 - [Vim Configuration](docs/VIM.md) - Vim setup and plugin details
 - [Tmux Configuration](docs/TMUX.md) - Tmux key bindings and customizations
