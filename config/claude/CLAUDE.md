@@ -13,6 +13,7 @@
 - All tests must pass before marking work complete.
 - Test edge cases and error conditions.
 - Name tests descriptively.
+- Before changing a function signature or behavior, check **all callers** in both `lib/` and `test/`, verify their test coverage, and run those tests green before making changes.
 
 ### Code Check Dance (pre-commit)
 Run this sequence before committing on all Elixir projects:
@@ -30,7 +31,10 @@ Run this sequence before committing on all Elixir projects:
 - Use Mox for mocking
 
 ## Elixir Code Style
-- Use pattern matching over conditionals
+- Use pattern matching over conditionals — prefer multi-clause functions over `cond`/`if` inside `case`
+- Never nest `if` inside `case` — restructure with `cond` or pattern matching
+- Don't add defensive guards for cases that can't happen (e.g., checking `is_list` on a field that's always a list)
+- When handling atom vs string keys, use separate function clauses with pattern matching
 - Add `@moduledoc`, `@doc`, and `@spec` to all public functions
 - Context modules are the public API — don't call Repo directly outside contexts
 - Database IDs are binary UUIDs (`:binary_id`)
