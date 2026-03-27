@@ -4,6 +4,7 @@
 - Never add `Co-Authored-By` or "Generated with Claude Code" lines to commit messages.
 - Follow conventional commits format: `feat:`, `fix:`, `test:`, `refactor:`, `docs:`, `chore:`.
 - Keep commit messages clean and professional.
+- **Never commit on main unless the user explicitly tells you to.** When working on a branch in a different worktree, never make changes or commits on main. Always stay in the worktree folder/branch you're working in.
 
 ## Development Workflow
 
@@ -31,13 +32,63 @@ Run this sequence before committing on all Elixir projects:
 - Use Mox for mocking
 
 ## Elixir Code Style
+
+Follow the [Elixir Style Guide](https://github.com/christopheradams/elixir_style_guide) as the baseline. Key rules and project-specific additions:
+
+### General
 - Use pattern matching over conditionals — prefer multi-clause functions over `cond`/`if` inside `case`
 - Never nest `if` inside `case` — restructure with `cond` or pattern matching
+- Never use `unless` with `else` — rewrite with `if` positive case first
 - Don't add defensive guards for cases that can't happen (e.g., checking `is_list` on a field that's always a list)
 - When handling atom vs string keys, use separate function clauses with pattern matching
+- Use `true` as the default clause in `cond`, not `:else`
 - Add `@moduledoc`, `@doc`, and `@spec` to all public functions
 - Context modules are the public API — don't call Repo directly outside contexts
 - Database IDs are binary UUIDs (`:binary_id`)
+- Use `__MODULE__` pseudo variable when a module refers to itself — avoid hardcoding the module name
+
+### Pipes
+- No single pipes — `x |> foo()` should be `foo(x)`
+- Bare variables start pipe chains — `String.trim(x) |> downcase()` → `x |> String.trim() |> downcase()`
+- Use parentheses for one-arity functions in pipes — `x |> String.downcase()` not `x |> String.downcase`
+
+### Error Handling
+- Lowercase error messages when raising exceptions, no trailing punctuation — `raise ArgumentError, "this is not valid"`
+
+### Testing
+- ExUnit assertion order: expression left, expected right — `assert actual_function(1) == true`
+- Exception: pattern matches go the other way — `assert {:ok, expected} = actual_function(3)`
+
+### Module Directive Ordering
+Follow the [Elixir Style Guide](https://github.com/christopheradams/elixir_style_guide#module-attribute-ordering) ordering for module directives. Strict order, blank line between each group, alphabetical within groups:
+
+```elixir
+defmodule MyModule do
+  @moduledoc "..."
+
+  @behaviour SomeBehaviour
+
+  use GenServer
+
+  import Foo
+  import Bar
+
+  require Logger
+
+  alias My.Module.A
+  alias My.Module.B
+
+  @module_attribute :value
+
+  defstruct [:field]
+
+  @type t() :: %__MODULE__{}
+
+  @callback some_function(term) :: :ok
+
+  # ... functions ...
+end
+```
 
 ## User Preferences
 - User likes interactive domain exploration — don't rush into schema design
