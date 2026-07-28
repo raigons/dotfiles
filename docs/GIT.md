@@ -7,13 +7,13 @@ This dotfiles setup uses a multi-profile git configuration system that automatic
 The main `.gitconfig` uses Git's `includeIf` directive to conditionally load different configurations based on your current directory:
 
 ```gitconfig
-[includeIf "gitdir:/Users/ramongoncalves/Documents/erlang-solutions/elc/"]
+[includeIf "gitdir:~/Documents/erlang-solutions/elc/"]
     path = "~/.gitconfig-work"
 
-[includeIf "gitdir:/Users/ramongoncalves/Documents/personal/"]
+[includeIf "gitdir:~/Documents/personal/"]
     path = "~/.gitconfig-personal"
 
-[includeIf "gitdir:/Users/ramongoncalves/Documents/assessments/"]
+[includeIf "gitdir:~/Documents/assessments/"]
     path = "~/.gitconfig-anonymous"
 ```
 
@@ -23,22 +23,22 @@ The main `.gitconfig` uses Git's `includeIf` directive to conditionally load dif
 - **Email**: rgoncalv@estee.com
 - **SSH Key**: `~/.ssh/id_rsa-elc`
 - **Used for**: Estée Lauder Companies projects
-- **Directories**: `/Users/ramongoncalves/Documents/erlang-solutions/elc/`
+- **Directories**: `~/Documents/erlang-solutions/elc/`
 
 ### Personal Profile (`.gitconfig-personal`)
 - **Email**: raigons@gmail.com
 - **SSH Key**: `~/.ssh/id_rsa-personal`
 - **Used for**: Personal projects, dotfiles, side projects
 - **Directories**:
-  - `/Users/ramongoncalves/Documents/personal/`
-  - `/Users/ramongoncalves/dotfiles/`
+  - `~/Documents/personal/`
+  - `~/dotfiles/`
   - Various client projects (PepsiCo, Razoyo, Cortex, etc.)
 
 ### Anonymous Profile (`.gitconfig-anonymous`)
 - **Name**: Anonymous
 - **Email**: (empty)
 - **Used for**: Code assessments and interview challenges
-- **Directories**: `/Users/ramongoncalves/Documents/assessments/`
+- **Directories**: `~/Documents/assessments/`
 
 ## Adding a New Work Configuration
 
@@ -136,7 +136,7 @@ Create `.gitconfig-newcompany`:
 Edit `~/dotfiles/config/git/.gitconfig` to add the new conditional include:
 
 ```gitconfig
-[includeIf "gitdir:/Users/ramongoncalves/Documents/newcompany/"]
+[includeIf "gitdir:~/Documents/newcompany/"]
     path = "~/.gitconfig-newcompany"
 ```
 
@@ -329,7 +329,7 @@ cat > ~/dotfiles/config/git/.gitconfig-acme << 'EOF'
 EOF
 
 # 4. Add to main .gitconfig
-echo '[includeIf "gitdir:/Users/ramongoncalves/Documents/acme/"]' >> ~/dotfiles/config/git/.gitconfig
+echo '[includeIf "gitdir:~/Documents/acme/"]' >> ~/dotfiles/config/git/.gitconfig
 echo '    path = "~/.gitconfig-acme"' >> ~/dotfiles/config/git/.gitconfig
 
 # 5. Create symlink

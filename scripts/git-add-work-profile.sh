@@ -32,11 +32,20 @@ read -p "Enter your full name: " USER_NAME
 read -p "Enter your work email: " USER_EMAIL
 read -p "Enter work directory path (e.g., ~/Documents/work/${COMPANY_NAME}): " WORK_DIR
 
-# Expand tilde
+# Expand tilde for filesystem operations
 WORK_DIR="${WORK_DIR/#\~/$HOME}"
 
 # Ensure directory ends with /
 [[ "${WORK_DIR}" != */ ]] && WORK_DIR="${WORK_DIR}/"
+
+# Portable form for the includeIf. Writing an absolute /Users/<name>/ path bakes
+# in the current username and the profile silently stops matching on any machine
+# where it differs — git expands ~/ in gitdir: patterns, so use that instead.
+if [[ "${WORK_DIR}" == "${HOME}/"* ]]; then
+  WORK_DIR_CONFIG="~/${WORK_DIR#${HOME}/}"
+else
+  WORK_DIR_CONFIG="${WORK_DIR}"
+fi
 
 echo -e "\n${YELLOW}📋 Summary:${NC}"
 echo "  Company: ${COMPANY_NAME}"
@@ -101,7 +110,7 @@ if grep -q "gitconfig-${COMPANY_NAME}" ${DOTFILES}/config/git/.gitconfig; then
 else
   cat >> ${DOTFILES}/config/git/.gitconfig << EOF
 
-[includeIf "gitdir:${WORK_DIR}"]
+[includeIf "gitdir:${WORK_DIR_CONFIG}"]
 	path = "~/.gitconfig-${COMPANY_NAME}"
 EOF
   echo -e "${GREEN}✓ Updated ${DOTFILES}/config/git/.gitconfig${NC}"

@@ -174,13 +174,13 @@ PostgreSQL database management shortcuts using Homebrew services.
 
 ### `connect_psql`
 
-Connect to the local PostgreSQL database as user `ramongoncalves`.
+Connect to the local PostgreSQL database as the current macOS user.
 
 ```bash
 connect_psql
 ```
 
-Equivalent to: `psql postgres -U ramongoncalves`
+Equivalent to: `psql postgres -U $USER`
 
 ### `pg_start`
 

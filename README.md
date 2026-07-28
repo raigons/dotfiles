@@ -38,10 +38,28 @@ The installation will:
 - Backup your existing dotfiles to `~/.dotfiles_backup_TIMESTAMP` (skipped if symlinks already set up)
 - Create `.zshrc` from the example template
 - Symlink all configuration files to your home directory
+- Install Homebrew if missing, then everything in the `Brewfile`
 - Install Vim plugins automatically via vim-plug
 - Install required zsh plugins (zsh-nvm, zsh-completions)
 - Install Spaceship prompt theme
 - Install fast-syntax-highlighting
+
+### Manual steps
+
+`install.sh` deliberately leaves these alone — they need secrets or GUI interaction:
+
+**iTerm2 colors.** The `Default` profile ships with a white background. Import the
+preset once: iTerm2 → Settings → Profiles → Colors → Color Presets → Import…, select
+`config/iterm/dark-background.itermcolors`, then pick `dark-background` from the same
+menu.
+
+**SSH keys.** The git profiles in `config/git/` reference `~/.ssh/id_rsa-personal` and
+`~/.ssh/id_rsa-elc`. Copy them from your previous machine (`chmod 600` afterwards) or
+generate new ones and register the public keys with GitHub. Without them every SSH
+push fails.
+
+**Language runtimes.** `asdf` arrives from the `Brewfile` with no plugins and no
+versions. Add the plugins you need and copy over a `~/.tool-versions`.
 
 ## Structure
 
@@ -57,6 +75,8 @@ dotfiles/
 ├── config/
 │   ├── claude/
 │   │   └── CLAUDE.md              # Global Claude Code instructions (symlinked to ~/.claude/)
+│   ├── iterm/
+│   │   └── dark-background.itermcolors  # Terminal color preset (import manually)
 │   └── git/
 │       ├── .gitconfig              # Main git config with conditional includes
 │       ├── .gitconfig-work         # Work profile

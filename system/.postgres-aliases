@@ -1,4 +1,4 @@
-alias connect_psql="psql postgres -U ramongoncalves"
+alias connect_psql='psql postgres -U $USER'
 # Use Homebrew services for PostgreSQL management
 alias pg_start="brew services start postgresql@15"
 alias pg_stop="brew services stop postgresql@15"
