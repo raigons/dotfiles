@@ -2,28 +2,28 @@
 	name = Ramon Gonçalves
 	email = raigons@gmail.com
 
-[includeIf "gitdir:/Users/ramongoncalves/Documents/erlang-solutions/elc/"]
+[includeIf "gitdir:~/Documents/erlang-solutions/elc/"]
 	path = "~/.gitconfig-work"
 
-[includeIf "gitdir:/Users/ramongoncalves/Documents/personal/"]
+[includeIf "gitdir:~/Documents/personal/"]
 	path = "~/.gitconfig-personal"
 
-[includeIf "gitdir:/Users/ramongoncalves/dotfiles/"]
+[includeIf "gitdir:~/dotfiles/"]
 	path = "~/.gitconfig-personal"
 
-[includeIf "gitdir:/Users/ramongoncalves/Documents/erlang-solutions/pepsico/"]
+[includeIf "gitdir:~/Documents/erlang-solutions/pepsico/"]
 	path = "~/.gitconfig-personal"
 
-[includeIf "gitdir:/Users/ramongoncalves/Documents/erlang-solutions/razoyo/"]
+[includeIf "gitdir:~/Documents/erlang-solutions/razoyo/"]
 	path = "~/.gitconfig-personal"
 
-[includeIf "gitdir:/Users/ramongoncalves/Documents/erlang-solutions/cortex/"]
+[includeIf "gitdir:~/Documents/erlang-solutions/cortex/"]
 	path = "~/.gitconfig-personal"
 
-[includeIf "gitdir:/Users/ramongoncalves/Documents/erlang-solutions/cortex_agent/"]
+[includeIf "gitdir:~/Documents/erlang-solutions/cortex_agent/"]
 	path = "~/.gitconfig-personal"
 
-[includeIf "gitdir:/Users/ramongoncalves/Documents/assessments/"]
+[includeIf "gitdir:~/Documents/assessments/"]
 	path = "~/.gitconfig-anonymous"
 
 [hub]
