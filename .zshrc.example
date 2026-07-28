@@ -44,15 +44,17 @@ SPACESHIP_RPROMPT_ORDER=(
   node
 )
 
-# Load fast-syntax-highlighting if available
-[ -f "$ZSH/plugins/fsh/fast-syntax-highlighting.plugin.zsh" ] && source "$ZSH/plugins/fsh/fast-syntax-highlighting.plugin.zsh"
-
 # Plugins
 plugins=(git zsh-nvm zsh-completions)
 fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
 autoload -U compinit && compinit
 
 source "$ZSH/oh-my-zsh.sh"
+
+# fast-syntax-highlighting — must load after oh-my-zsh.sh so it wraps the final
+# set of ZLE widgets. Installed by setup-dependencies.sh into $ZSH_CUSTOM.
+FSH="${ZSH_CUSTOM:-$ZSH/custom}/plugins/fsh/fast-syntax-highlighting.plugin.zsh"
+[ -f "$FSH" ] && source "$FSH"
 
 # Aliases
 [ -f "$SYSTEM/.alias" ] && source "$SYSTEM/.alias"
