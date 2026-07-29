@@ -1,5 +1,6 @@
 tap "snyk/tap"
 brew "asdf"
+brew "awscli"
 brew "coreutils"
 brew "fzf"
 brew "gh"

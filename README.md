@@ -12,6 +12,7 @@ A clean and modular dotfiles configuration for macOS development, optimized for 
 - **Multi-Profile Git Configuration** - Automatic git identity switching based on project directory (work, personal, anonymous)
 - **Git Bare Clone & Init** - Custom `git bare-clone` and `git bare-init` subcommands for worktree-based workflows
 - **Claude Code** - Auto-installs CLI and symlinks global `CLAUDE.md` instructions
+- **AWS CLI** - v2 plus the Session Manager plugin and zsh completion, installed from the `Brewfile`
 
 ## Quick Start
 
@@ -61,6 +62,11 @@ push fails.
 **Language runtimes.** `asdf` arrives from the `Brewfile` with no plugins and no
 versions. Add the plugins you need and copy over a `~/.tool-versions`.
 
+**AWS credentials.** The `awscli` formula is installed, but `~/.aws/` is machine-local
+and holds secrets, so nothing here creates it. Run `aws configure sso` (or
+`aws configure --profile <name>` for static keys) once per machine — see the
+[AWS CLI Guide](docs/AWS.md).
+
 ## Structure
 
 ```
@@ -87,6 +93,7 @@ dotfiles/
 │   ├── git-bare-clone              # Bare clone + worktree setup (git subcommand)
 │   └── git-bare-init               # Bare init + worktree setup (git subcommand)
 ├── docs/
+│   ├── AWS.md          # AWS CLI installation and profile configuration
 │   ├── GIT.md          # Git multi-profile setup guide
 │   ├── ALIASES.md      # Complete alias reference
 │   ├── VIM.md          # Vim configuration guide
@@ -112,6 +119,7 @@ dotfiles/
 
 - [Git Configuration](docs/GIT.md) - Multi-profile git setup and how to add new work configurations
 - [Claude Code](docs/CLAUDE.md) - Global AI assistant instructions and worktree convention
+- [AWS CLI](docs/AWS.md) - Installing the CLI, SSO login, profiles, and troubleshooting
 - [Aliases Reference](docs/ALIASES.md) - Complete guide to all available aliases
 - [Vim Configuration](docs/VIM.md) - Vim setup and plugin details
 - [Tmux Configuration](docs/TMUX.md) - Tmux key bindings and customizations
@@ -158,6 +166,7 @@ To customize your setup:
 
 ## Recent Updates
 
+- Added `awscli` to the `Brewfile`, Homebrew completions to `fpath`, and [docs/AWS.md](docs/AWS.md)
 - Added `Brewfile` for reproducible machine setup via Homebrew
 - Migrated Vim plugin manager from Vundle to vim-plug
 - Improved tmux config: mouse support, zero escape-time, path-preserving splits

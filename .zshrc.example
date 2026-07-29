@@ -47,6 +47,8 @@ SPACESHIP_RPROMPT_ORDER=(
 # Plugins
 plugins=(git zsh-nvm zsh-completions)
 fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
+# Homebrew ships completions here (awscli's _aws, gh, ...) — must precede compinit.
+[ -d /opt/homebrew/share/zsh/site-functions ] && fpath+=/opt/homebrew/share/zsh/site-functions
 autoload -U compinit && compinit
 
 source "$ZSH/oh-my-zsh.sh"
